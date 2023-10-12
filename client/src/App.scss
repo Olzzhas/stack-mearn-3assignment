@@ -1,0 +1,21 @@
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+@import url('./reset.css');
+
+body {
+  width: 100%;
+  background-color: rgb(184, 200, 255);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 40px;
+  width: 1400px;
+  min-height: 90vh;
+
+  border-radius: 15px;
+  background-color: white;
+}

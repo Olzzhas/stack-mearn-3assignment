@@ -1,0 +1,60 @@
+.userlist-container {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #fff;
+  }
+
+  .button-column {
+    text-align: center;
+  }
+
+  .button {
+    padding: 5px 10px;
+    margin: 0 5px;
+  }
+
+  .edit-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+  }
+
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+  }
+}
+
+.user-table {
+  // display: flex;
+  //   flex-direction: column;
+  justify-content: space-between;
+  width: 800px;
+  margin: auto;
+}
+
+.user-find {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
