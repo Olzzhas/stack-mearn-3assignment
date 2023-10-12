@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./UserModel');
 const cors = require('cors');
+const { STATUS_CODES } = require('http');
 const router = new express();
 
 router.use(cors());
@@ -9,14 +10,14 @@ router.options('*', cors());
 router.post('/user-create', cors(), async (req, res) => {
   const candidate = await User.findOne({ email: req.body.email });
   if (!candidate) {
-    const user = await User.create({
+    await User.create({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     });
-
-    res.send({ user });
+    res.redirect('http://localhost:3000');
   } else {
+    console.log('This email is already in use!');
     res.json({ message: 'This email is already in use!' });
   }
 });
@@ -48,11 +49,23 @@ router.post('/user-delete', cors(), async (req, res) => {
   }
 });
 
-// router.get(`/user-get/:id`, async (req, res) => {
-//   userId = req.params.id;
-//   console.log(userId);
-//   const user = await User.findOne({ '_id.$oid': new ObjectID(userId) });
-//   res.send({ user });
-// });
+router.put('/user-update', cors(), async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (user != null) {
+      await User.updateOne({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+      }).then(() => {
+        res.send({ message: 'User is updated successfully!' });
+      });
+    } else {
+      res.status(404).send({ error: 'user is not found!' });
+    }
+  } catch (error) {
+    throw err;
+  }
+});
 
 module.exports = router;
